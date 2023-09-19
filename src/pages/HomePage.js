@@ -33,6 +33,7 @@ import {
 } from "react-icons/fa";
 import BlogAreaChart from "../components/BlogAreaChart";
 import CareerAreaChart from "../components/CareerChart";
+import CustomCard from "../components/CustomCard";
 
 const HomePage = () => {
   const { data } = useSelector((state) => state.blog);
@@ -43,133 +44,136 @@ const HomePage = () => {
 
   const recentBlogIndex = data.length - 1;
   const recentBlog = data[recentBlogIndex]?.title;
+  console.log(recentBlog);
   const recentCareerIndex = careerdata.length - 1;
   const recentCareer = careerdata[recentCareerIndex]?.title;
+  const recentCareerId = careerdata[recentCareerIndex]?.id;
+  const recentBlogId = data[recentBlogIndex]?.id;
 
-  console.log(recentBlog);
-  console.log(recentCareer);
 
-  function handleClick(name) {
-    if (name == "blog") {
-      navigate("/createBlog");
-    } else if (name == "career") {
-      navigate("/createCareer");
+
+  
+
+  const chartData = [
+    {
+      title: "Blog Counts by date",
+      chartComponent: <BlogAreaChart />,
+      width: 600,
+      height : 400
+    },
+    {
+      title: "Career Counts by date",
+      chartComponent: <CareerAreaChart />,
+      width: 600,
+      height: 400,
+    },
+  ];
+
+  const cardData = [
+    {
+      title: "Total Blogs",
+      icon: FaRegListAlt,
+      data: totalBlogs,
+      onClick: () => handleNavigate("total blogs"),
+    },
+    {
+      title: "Total Careers",
+      icon: FaBriefcase,
+      data: totalCareers,
+      onClick: () => handleNavigate("total careers"),
+    },
+    {
+      title: "Recent Blog",
+      icon: FaRegListAlt,
+      data: recentBlog,
+      onClick: () => handleNavigate("recent blogs", recentBlogId),
+    },
+    {
+      title: "Recent Career",
+      icon: FaBriefcase,
+      data: recentCareer,
+      onClick: () => handleNavigate("recent careers", recentCareerId),
+    },
+  ];
+
+  const handleNavigate = (type, id) => {
+    if (type == "total blogs") {
+      navigate("/blogs");
     }
-  }
+    if (type == "total careers") {
+      navigate("/careers");
+    }
+    if (type == "recent blogs") {
+      navigate(`/blogs/${id}`);
+    }
+    if (type == "recent careers") {
+      navigate(`careers/${id}`);
+    }
+  };
 
   return (
     <>
-    <Box>
-      <Card my={10} align="right">
-        <CardHeader>
-          <Heading
-            size="sm"
-            fontFamily="karla"
-            fontWeight="bold"
-            color="#152E7B"
-          >
-            {" "}
-            Welcome to eSpark Admin Portal
-          </Heading>
-        </CardHeader>
-      </Card>
-
-      <SimpleGrid
-        py={10}
-        px={200}
-        spacing={10}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-        // width="100% "
+      <Box w='100%'
+      // backgroundColor='gray.200'
       >
-        <Card textAlign="center" height="150">
-          <CardHeader textAlign="center">
-            <Flex justifyContent="center" gap={2}>
-              <FaRegListAlt />
-              <Heading fontSize={18} fontWeight={500} color="#7F888E">
-                Total Blogs
-              </Heading>
-              <Text fontSize="17" fontWeight={400}>
-                {totalBlogs}
-              </Text>
-            </Flex>
-
-            <Box ml="45%" mt="10">
-              <FaArrowAltCircleRight size={20} color="gray" />
-            </Box>
-          </CardHeader>
-        </Card>
-
-        <Card textAlign="center">
-          <CardHeader textAlign="center">
-            <Flex justifyContent="center" gap={2}>
-              <FaBriefcase />
-              <Heading fontSize={18} fontWeight={500} color="#7F888E">
-                Total Careers
-              </Heading>
-              <Text fontSize="17">{totalCareers}</Text>
-            </Flex>
-            <Box ml="45%" mt="10">
-              <FaArrowAltCircleRight size={20} color="gray" />
-            </Box>
-          </CardHeader>
-        </Card>
-
-        <Card textAlign="center">
-          <CardHeader textAlign="center">
-            <Flex justifyContent="center" gap={2}>
-              <FaRegListAlt />
-              <Heading fontSize={18} fontWeight={500} color="#7F888E">
-                Recent Blog
-              </Heading>
-            </Flex>
-            <Text my={2} fontSize="16" color={'#152E7B'}>
-              {recentBlog}
-            </Text>
-            <Box ml="45%" mt="5">
-              <FaArrowAltCircleRight size={20} color="gray" />
-            </Box>
-          </CardHeader>
-        </Card>
-
-        <Card textAlign="center">
-          <CardHeader textAlign="center">
-            <Flex justifyContent="center" gap={2}>
-              <FaBriefcase />
-              <Heading fontSize={18} fontWeight={500} color="#7F888E">
-                Recent career
-              </Heading>
-            </Flex>
-            <Text my={2} fontSize="16" color={'#152E7B'}>
-              {recentCareer}
-            </Text>
-            <Box ml="45%" mt="5">
-              <FaArrowAltCircleRight size={20} color="gray" />
-            </Box>
-          </CardHeader>
-        </Card>
-      </SimpleGrid>
-
-      <Divider />
-
-      <Grid templateColumns="repeat(4, 1fr)" gap={10} my={50} mx={400}>
-        <Card width={400}>
+        <Card my={10} align="right">
           <CardHeader>
-            <Heading size={"sm"} fontWeight={500}> Blog Counts by date</Heading>
+            <Heading
+              size="sm"
+              fontFamily="karla"
+              fontWeight="bold"
+              color="#152E7B"
+            >
+              Welcome to eSpark Admin Portal
+            </Heading>
           </CardHeader>
-          <CardBody mt={5}>
-            <BlogAreaChart />
+        </Card>
+
+        <SimpleGrid
+          py={10}
+          spacing={10}
+          display="flex"
+          justifyContent='space-evenly'
+          width="100%"
+        >
+          {cardData.map((card, index) => (
+            <CustomCard
+              key={index}
+              title={card.title}
+              icon={card.icon}
+              data={card.data}
+              onClick={card.onClick}
+            />
+          ))}
+        </SimpleGrid>
+
+        <Divider />
+        <SimpleGrid
+          py={10}
+          spacing={10}
+          display="flex"
+          justifyContent="center"
+          width="100%"
+        >
+      {chartData.map((chart, index) => (
+        <Card
+          key={index}
+          title={chart.title}
+          width={chart.width}
+          height={chart.height || undefined} 
+        >
+          <CardHeader textAlign='center'>
+            <Heading size="sm" fontWeight={500} >
+              {chart.title}
+            </Heading>
+          </CardHeader>
+          <CardBody mt={5} display='flex' justifyContent='center'>
+            {chart.chartComponent}
           </CardBody>
         </Card>
-
-        <Card width={400} height={300}>
-          <CardHeader>
-            <Heading  size={"sm"} fontWeight={500}> Career Counts by date</Heading>
-          </CardHeader>
-          <CardBody mt={5}>
-            <CareerAreaChart />
-          </CardBody>
-        </Card>
-      </Grid>
+      ))}
+    </SimpleGrid>
+        
       </Box>
     </>
   );

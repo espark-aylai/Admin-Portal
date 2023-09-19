@@ -160,7 +160,7 @@ function BlogAreaChart() {
           color: 'rgba(0, 0, 0, 0.1)',
         },
         ticks: {
-          beginAtZero: true,
+          beginAtZero: true,  
           font: {
             size: 12, // Adjust the Y-axis tick font size
           },
@@ -182,7 +182,7 @@ function BlogAreaChart() {
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '300px' }}> {/* Adjust the width as needed */}
+    <div  style={{ width: '100%', maxWidth: '500px' }}> {/* Adjust the width as needed */}
       <Line
         options={options}
         data={{
@@ -203,9 +203,3 @@ function BlogAreaChart() {
 }
 
 export default BlogAreaChart;
-
-
-
-
-
-
