@@ -50,16 +50,12 @@ const HomePage = () => {
   const recentCareerId = careerdata[recentCareerIndex]?.id;
   const recentBlogId = data[recentBlogIndex]?.id;
 
-
-
-  
-
   const chartData = [
     {
       title: "Blog Counts by date",
       chartComponent: <BlogAreaChart />,
       width: 600,
-      height : 400
+      height: 400,
     },
     {
       title: "Career Counts by date",
@@ -113,10 +109,8 @@ const HomePage = () => {
 
   return (
     <>
-      <Box w='100%'
-      // backgroundColor='gray.200'
-      >
-        <Card my={10} align="right">
+      <Box w="100%">
+        <Card w="200" h="50 " my={10} alignItems="center">
           <CardHeader>
             <Heading
               size="sm"
@@ -133,7 +127,7 @@ const HomePage = () => {
           py={10}
           spacing={10}
           display="flex"
-          justifyContent='space-evenly'
+          justifyContent="space-evenly"
           width="100%"
         >
           {cardData.map((card, index) => (
@@ -148,6 +142,7 @@ const HomePage = () => {
         </SimpleGrid>
 
         <Divider />
+
         <SimpleGrid
           py={10}
           spacing={10}
@@ -155,25 +150,31 @@ const HomePage = () => {
           justifyContent="center"
           width="100%"
         >
-      {chartData.map((chart, index) => (
-        <Card
-          key={index}
-          title={chart.title}
-          width={chart.width}
-          height={chart.height || undefined} 
-        >
-          <CardHeader textAlign='center'>
-            <Heading size="sm" fontWeight={500} >
-              {chart.title}
-            </Heading>
-          </CardHeader>
-          <CardBody mt={5} display='flex' justifyContent='center'>
-            {chart.chartComponent}
-          </CardBody>
-        </Card>
-      ))}
-    </SimpleGrid>
-        
+          {chartData.map((chart, index) => (
+            <Card
+              key={index}
+              title={chart.title}
+              // width={chart.width}
+              width="820px"
+              height="400px"
+              // height={chart.height || undefined}
+              transition="transform 0.3s ease-in-out"
+              _hover={{
+                transform: "scale(1.03)",
+                backgroundColor: "primary.500",
+              }}
+            >
+              <CardHeader textAlign="center">
+                <Heading size="sm" fontWeight={500}>
+                  {chart.title}
+                </Heading>
+              </CardHeader>
+              <CardBody mt={5} display="flex" justifyContent="center">
+                {chart.chartComponent}
+              </CardBody>
+            </Card>
+          ))}
+        </SimpleGrid>
       </Box>
     </>
   );

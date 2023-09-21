@@ -14,7 +14,7 @@ const NavItem = ({ navSize, icon, title, link }) => {
       mt={30}
       flexDirection={"column"}
       width={"100%"}
-      // alignItems={navSize ? "center" : "flex-start"}
+      alignItems={navSize ? "center" : "flex-start"}
     >
       <Menu>
         {title && (
@@ -22,9 +22,7 @@ const NavItem = ({ navSize, icon, title, link }) => {
             href={link}
             p={3}
             borderRadius={8}
-            _hover={{ color: '#152E7B',
-           backgroundColor: 'gray.200'
-             }}
+            _hover={{ color: "#152E7B", backgroundColor: "gray.200" }}
             width={!navSize && "100%"}
             _active={{ backgroundColor: "#82AAAD" }}
             textAlign={navSize ? "center" : "flex-start"}

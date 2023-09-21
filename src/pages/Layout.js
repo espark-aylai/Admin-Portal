@@ -34,9 +34,10 @@ const Layout = ({ children }) => {
         // mx='5'
       >
         <Navbar />
-
         <Box mx="10">{children}</Box>
+        
       </GridItem>
+      
     </Grid>
   );
 };

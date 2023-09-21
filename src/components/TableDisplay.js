@@ -25,6 +25,33 @@ const TableDisplay = ({
   isCareer,
   editRoute,
 }) => {
+  const tableStyles = {
+    // borderCollapse: "collapse",
+    width: "100%",
+    // marginTop: "20px",
+  };
+
+  const headerCellStyles = {
+    // color: "#002e7b",
+    color: "#002e7b",
+    // fontWeight: "bold",
+    padding: "10px",
+    textAlign: "left",
+  };
+
+  const bodyRowStyles = (index) => ({
+    // background: index % 2 === 0 ? "gray.100" : "blue.50",
+    background: index % 2 === 0 ? "#f6f6f6" : "gray.50",
+    // borderBottom: "2px solid rgb(255 254 254)",
+  });
+
+  // : rgba(255, 255, 255, 0.08)
+  // const bodyCellStyles = {
+  //   cursor: "pointer",
+  //   padding: "10px",
+  //   transition: "background 0.3s",
+  // };
+
   return (
     <>
       <HStack justify="flex-end" my={3} color="teal" pr="20">
@@ -35,12 +62,8 @@ const TableDisplay = ({
         </Button>
       </HStack>
       <Box>
-        <Table variant="simple" size={"sm"}>
-          <Thead
-            //  background='cyan.50'
-            background="#c4d8e1"
-            // textColor='#002e7b'
-          >
+        <Table variant="simple" size={"sm"} style={tableStyles}>
+          <Thead background="#c4d8e1">
             <Tr>
               {columns?.map((column) => (
                 <Th color="#002e7b" key={column.key}>
@@ -52,15 +75,11 @@ const TableDisplay = ({
           </Thead>
           <Tbody>
             {data?.map((item, index) => (
-              <Tr
-                border="2px"
-                borderColor="gray.100"
-                key={item.id}
-                bg={index % 2 === 0 ? "gray.100" : "blue.50"}
-              >
+              <Tr key={item.id} bg={index % 2 == 0 ? "#f6f6f6" : "gray.100"}>
                 {columns.map((column) => (
                   <Td
                     _hover={{ bg: "#dbeef1" }}
+                    transition="ease-in "
                     cursor="pointer"
                     onClick={() => handleClick(item?.id, column.key)}
                     key={column.key}
@@ -68,7 +87,7 @@ const TableDisplay = ({
                     {item[column.key]}
                   </Td>
                 ))}
-                <Td>
+                <Td cursor="pointer">
                   <DeleteAlert isCareer={isCareer} id={item?.id} />
                   <Link isCareer={isCareer} to={`${editRoute}/${item.id}`}>
                     <Button variant="ghost">

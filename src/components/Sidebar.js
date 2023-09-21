@@ -58,14 +58,13 @@ const Sidebar = ({ isCollapsed }) => {
           title="eSpark Careers"
           icon={FaBriefcase}
         />
-        
-        {/* <NavItem navSize={isCollapsed} title="Clients" icon={FaUserAlt} />
+
+        <NavItem navSize={isCollapsed} title="Clients" icon={FaUserAlt} />
         <NavItem navSize={isCollapsed} title="Projects" icon={FaProjectDiagram} />
-        <NavItem navSize={isCollapsed} title="Setting" icon={FaUserAlt} /> */}
+        <NavItem navSize={isCollapsed} title="Setting" icon={FaUserAlt} />
       </Flex>
     </Flex>
   );
 };
 export default Sidebar;
 
-// #DEA19E

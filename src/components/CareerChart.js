@@ -102,7 +102,7 @@ function CareerAreaChart() {
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '500px' }}> {/* Adjust the width as needed */}
+    <div style={{ width: '100%', maxWidth: '700px' }}> {/* Adjust the width as needed */}
       <Line
         options={options}
         data={{
@@ -123,7 +123,6 @@ function CareerAreaChart() {
 }
 
 export default CareerAreaChart;
-
 
 
 
