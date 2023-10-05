@@ -1,30 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Center,
-  Divider,
-  Flex,
-  HStack,
-  Heading,
-  Input,
-  Text,
-  Textarea,
-  VStack,
-  flexbox,
-} from "@chakra-ui/react";
-import DOMPurify from "dompurify";
-import { EditIcon } from "@chakra-ui/icons";
-import { editBlog } from "./blogSlice";
-import JoditEditor from "jodit-react";
 import DisplayDetail from "../../components/DisplayDetails";
-
+import { editBlog } from "./blogSlice";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -69,75 +47,7 @@ const BlogDetail = () => {
   };
 
   return (
-    // <VStack mt={5}>
-    //   <Button
-    //     py={5}
-    //     color="#3359a2"
-    //     position="fixed"
-    //     right="5vw"
-    //     onClick={() => setIsEditable(!isEditable)}
-    //   >
-    //     {isEditable ? "Cancel" : <EditIcon />}
-    //   </Button>
-
-    //   {isEditable ? (
-    //     <Input
-    //       my={20}
-    //       type="text"
-    //       name="title"
-    //       value={editedFields.title}
-    //       onChange={handleInputChange}
-    //       onBlur={handleEditChange}
-    //       placeholder="Title"
-    //     />
-    //   ) : (
-    //     <Text my={10} contentEditable={isEditable ? true : false}>
-    //       {editedFields.title}
-    //     </Text>
-    //   )}
-
-    //   <Box textAlign="start">
-    //     <Heading my="2" color="#3359a2" size={"md"}>
-    //       Blog Content
-    //     </Heading>
-    //     {isEditable ? (
-    //       <JoditEditor
-    //         onChange={(content) => handleInputChange(content, "content")}
-    //         value={editedFields.content}
-    //         onBlur={() => handleEditChange("content")}
-    //         name="content"
-    //       />
-    //     ) : (
-    //       <Text
-    //         dangerouslySetInnerHTML={{
-    //           __html: DOMPurify?.sanitize(editedFields.content),
-    //         }}
-    //       ></Text>
-    //     )}
-
-    //     <Divider my={5} />
-
-    //     <Heading my="2" color="#3359a2" size={"md"}>
-    //       Blog Excerpt
-    //     </Heading>
-    //     {isEditable ? (
-    //       <Textarea
-    //         name="excerpt"
-    //         value={editedFields.location}
-    //         onChange={handleInputChange}
-    //         onBlur={handleEditChange}
-    //         placeholder="Location"
-    //       />
-    //     ) : (
-    //       <Text contentEditable={isEditable ? true : false}>
-    //         {editedFields.excerpt}
-    //       </Text>
-    //     )}
-    //   </Box>
-    // </VStack>
-
     <DisplayDetail
-
       id={id}
       data={data}
       editAction={editBlog}
@@ -145,9 +55,6 @@ const BlogDetail = () => {
       contentField="content"
       excerptField="excerpt"
     />
-
-
-
   );
 };
 

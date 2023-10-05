@@ -106,7 +106,6 @@ console.log(formatedDate)
     if (isCareer) {
       dispatch(addCareer({ ...newData }));
     } else {
-      // const newItemId =  data?.length == null ? 1 : data?.length + 1
       dispatch(addBlog({ ...newData }));
       console.log(data?.length, "data length");
     }

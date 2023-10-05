@@ -14,8 +14,17 @@ import JoditEditor from "jodit-react";
 import { useDispatch } from "react-redux";
 import { EditIcon } from "@chakra-ui/icons";
 
-
-const DisplayDetail = ({id,data,editAction,titleField,contentField,locationField,responsibilityField,excerptField,isCareer,}) => {
+const DisplayDetail = ({
+  id,
+  data,
+  editAction,
+  titleField,
+  contentField,
+  locationField,
+  responsibilityField,
+  excerptField,
+  isCareer,
+}) => {
   const dispatch = useDispatch();
 
   const item = data?.filter((item) => item?.id == id);
@@ -80,12 +89,17 @@ const DisplayDetail = ({id,data,editAction,titleField,contentField,locationField
           placeholder="Title"
         />
       ) : (
-        <Text my={10} color='#3359B5' fontWeight='700' contentEditable={isEditable ? true : false}>
+        <Text
+          my={10}
+          color="#3359B5"
+          fontWeight="700"
+          contentEditable={isEditable ? true : false}
+        >
           {editedFields.title}
         </Text>
       )}
 
-      <Box textAlign="start">
+      <Box textAlign="start" >
         <Heading my="2" color="#3359a2" size={"md"}>
           {isCareer ? "Details" : "Blog Content"}
         </Heading>
@@ -111,7 +125,7 @@ const DisplayDetail = ({id,data,editAction,titleField,contentField,locationField
         </Heading>
         {isEditable ? (
           <Textarea
-            name={isCareer ? 'location' : 'excerpt'}
+            name={isCareer ? "location" : "excerpt"}
             value={isCareer ? editedFields.location : editedFields.excerpt}
             onChange={handleInputChange}
             onBlur={handleEditChange}
@@ -129,7 +143,7 @@ const DisplayDetail = ({id,data,editAction,titleField,contentField,locationField
         {isCareer && (
           <>
             <Heading color="#3359a2" size={"md"}>
-                Job responsibility
+              Job responsibility
             </Heading>
 
             {isEditable ? (

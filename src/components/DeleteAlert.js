@@ -26,13 +26,11 @@ export default function DeleteAlert({id, isCareer}) {
   const { data } = useSelector((state) => state.blog);
   const { careerdata } = useSelector((state) => state.career);
 
-// console.log(id, 'prop.id')
   const handleDelete = (id) => {
     console.log(id, 'handleDelete id')
     
     dispatch ( isCareer ? deleteCareer(id)  :  deleteBlog(id))
 
-// isCareer ? careerdata.length - 1 : data.length - 1
 
     onClose()
 

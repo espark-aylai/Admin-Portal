@@ -97,7 +97,7 @@ import { useSelector } from 'react-redux';
 function BlogAreaChart() {
   const { data } = useSelector((state) => state.blog);
 
-  // Create an object to count the number of blogs per createDate
+  
   const blogCountByDate = data.reduce((countByDate, blog) => {
     const createDate = blog.createDate;
     if (countByDate[createDate]) {
@@ -108,7 +108,6 @@ function BlogAreaChart() {
     return countByDate;
   }, {});
 
-  // Extract unique dates and corresponding blog counts
   const uniqueDates = Object.keys(blogCountByDate);
   const blogCounts = uniqueDates.map((date) => blogCountByDate[date]);
 
@@ -126,7 +125,7 @@ function BlogAreaChart() {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false, // Ensure the chart does not maintain its aspect ratio
+    maintainAspectRatio: false, 
     plugins: {
       legend: {
         display: false, // Hide the legend
@@ -154,7 +153,7 @@ function BlogAreaChart() {
       },
       y: {
         title: {
-          display: false, // Hide the Y-axis title
+          display: false,
         },
         grid: {
           color: 'rgba(0, 0, 0, 0.1)',
@@ -162,7 +161,7 @@ function BlogAreaChart() {
         ticks: {
           beginAtZero: true,  
           font: {
-            size: 12, // Adjust the Y-axis tick font size
+            size: 12, 
           },
         },
       },
@@ -171,18 +170,18 @@ function BlogAreaChart() {
       line: {
         tension: 0.4, 
         borderWidth: 2,
-        borderColor: 'rgb(75, 192, 192)', // Custom color for the line
-        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Custom color for the fill
+        borderColor: 'rgb(75, 192, 192)', 
+        backgroundColor: 'rgba(75, 192, 192, 0.2)', 
       },
       point: {
-        radius: 3, // Adjust the point radius
-        backgroundColor: 'rgb(75, 192, 192)', // Custom color for the points
+        radius: 3, 
+        backgroundColor: 'rgb(75, 192, 192)', 
       },
     },
   };
 
   return (
-    <div  style={{ width: '100%', maxWidth: '700px' }}> {/* Adjust the width as needed */}
+    <div  style={{ width: '100%', maxWidth: '700px' }}> 
       <Line
         options={options}
         data={{
@@ -190,7 +189,7 @@ function BlogAreaChart() {
           datasets: [
             {
               fill: {
-                target: 'origin', // Fill from the origin line to the dataset
+                target: 'origin', 
               },
               label: 'Blog Count',
               data: blogCounts,

@@ -8,9 +8,9 @@ const CareerList = () => {
   const navigate = useNavigate();
 
   const dataWithIndex = careerdata?.map((item, index) => ({
-    index: index + 1, // Add the index (position)
+    index: index + 1, 
     id: item.id,
-    ...item, // Include other data properties
+    ...item, 
   }));
   const columns = [
     { key: "index", header: "Serial no" },

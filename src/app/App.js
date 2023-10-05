@@ -4,10 +4,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import CareerDetails from '../features/career/CareerDetails';
-import CreateBlog from '../features/blogs/CreateBlog';
-import CareerList from '../pages/CareerList';
 import { useSelector } from 'react-redux';
+import CreateBlog from '../features/blogs/CreateBlog';
+import CareerDetails from '../features/career/CareerDetails';
+import CareerList from '../pages/CareerList';
 import Layout from '../pages/Layout';
 
 import { Toaster } from 'react-hot-toast';
@@ -32,7 +32,6 @@ const App = () => {
           <Route path={'/careers'} element={<CareerList/>} /> 
           <Route path={'/createCareer'} element={<CreateBlog label ='career' isCareer={true}/>} /> 
           <Route path={`careers/:id`} element={<CareerDetails/>} />  
-          {/* <Route path={`careers/:id`} element={<OptimizedCode/>} />   */}
           <Route path={'/updateCareer/:id'} element={<CreateBlog isCareer={true} />} />  
         </Routes>
       </Layout>
